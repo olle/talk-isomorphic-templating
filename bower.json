@@ -1,0 +1,6 @@
+{
+  "name": "talk-mustache-templating",
+  "devDependencies": {
+    "reveal.js": "~2.6.2"
+  }
+}
