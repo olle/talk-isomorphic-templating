@@ -1,0 +1,143 @@
+/* BASE */
+
+html,
+body {
+  font-size: 100%;
+  line-height: 1.6789;
+  color: #222;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .7);
+  background: url(../img/noise.png), -moz-radial-gradient(50% 2%, circle cover, rgba(255, 255, 255, .2) 0%, rgba(0, 0, 0, .6) 100%);
+  background: url(../img/noise.png), -webkit-radial-gradient(50% 2%, circle cover, rgba(255, 255, 255, .2) 0%, rgba(0, 0, 0, .6) 100%);
+  margin: 0;
+  padding: 0;
+  font-family: 'Oregano', Helvetica, Arial, sans-serif;
+  height: 100%;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-bottom: 1em;
+}
+h1 {
+  margin-top: 0;
+  padding-top: .67em;
+}
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  margin-bottom: .2em;
+}
+code {
+  white-space: nowrap;
+  font-family: monospace;
+  background: #B8D1E8;
+  color: #000;
+  padding: .1em .5em .2em;
+  border-radius: .4em;
+  text-shadow: 0px 1px 0px #ccc;
+}
+a {
+  color: #36b;
+}
+
+input,
+button {
+  display: inline-block;
+  border: none;
+  line-height: 130%;
+  font-family: inherit;
+  font-size: 100%;
+  padding: .56em;
+}
+input {
+  background: #fff;
+  border-bottom: 2px solid #f1f1f1;
+}
+button {
+  background: lightgreen;
+  border-bottom: 2px solid darkgreen;
+}
+
+ul {
+  margin: 0;
+  margin-bottom: .3em;
+}
+
+.mini {
+  font-size: 60%;
+  color: #999;
+}
+/* LAYOUT */
+
+.container {
+  margin: 0 auto;
+  width: 100%;
+}
+.example,
+.is-centered {
+  text-align: center;
+}
+
+/* ENHANCED SIZES */
+
+@media screen and (min-width: 20.000em) {
+  /*320px*/
+
+  body {
+    font-size: 100%;
+  }
+  .container {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 37.438em) {
+  /*599px*/
+
+  .container {
+    text-align: center;
+  }
+}
+@media screen and (min-width: 37.500em) {
+  /*600px*/
+
+  body {
+    font-size: 112.5%;
+    line-height: 1.6789;
+  }
+  .container {
+    width: 70.5%;
+    text-align: left;
+  }
+}
+@media screen and (min-width: 50.000em) {
+  /*800px*/
+
+  body {
+    font-size: 125.0%;
+    line-height: 1.56789;
+  }
+  .container {
+    width: 58.5%;
+  }
+}
+@media screen and (min-width: 64.375em) {
+  /*1030px*/
+
+  body {
+    font-size: 147.5%;
+    line-height: 1.456789;
+  }
+  .container {
+    width: 51.7%;
+  }
+}
+@media screen and (min-width: 75.000em) and (min-height: 31.250em) {
+  /*1200px X 500px*/
+
+  body {
+    font-size: 170%;
+    line-height: 1.3456789;
+  }
+  .container {
+    width: 47%;
+  }
+}

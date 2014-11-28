@@ -2,5 +2,9 @@
   "name": "talk-mustache-templating",
   "devDependencies": {
     "reveal.js": "~2.6.2"
+  },
+  "dependencies": {
+    "mustache": "~0.8.2",
+    "jquery": "~2.1.1"
   }
 }

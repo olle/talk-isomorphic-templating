@@ -22,6 +22,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
         registry.addResourceHandler("/templates/**").addResourceLocations("/templates/");
+        registry.addResourceHandler("/assets/**").addResourceLocations("/assets/");
         registry.addResourceHandler("/css/**").addResourceLocations("/css/");
         registry.addResourceHandler("/img/**").addResourceLocations("/img/");
     }
@@ -31,9 +32,6 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
     public ViewResolver viewResolver() {
 
         MustacheViewResolver viewResolver = new MustacheViewResolver();
-
-        viewResolver.setPrefix("/templates/");
-        viewResolver.setSuffix(".mustache");
         viewResolver.setCache(false); // development only
         viewResolver.setTemplateFactory(templateFactory());
 
@@ -45,9 +43,9 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
     public JMustacheTemplateFactory templateFactory() {
 
         JMustacheTemplateFactory templateFactory = new JMustacheTemplateFactory();
-        templateFactory.setEscapeHTML(true);
-        templateFactory.setStandardsMode(false);
         templateFactory.setTemplateLoader(templateLoader());
+        templateFactory.setPrefix("/templates/");
+        templateFactory.setSuffix(".mustache");
 
         return templateFactory;
     }
@@ -56,6 +54,10 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
     @Bean
     public JMustacheTemplateLoader templateLoader() {
 
-        return new JMustacheTemplateLoader();
+        JMustacheTemplateLoader templateLoader = new JMustacheTemplateLoader();
+//        templateLoader.setPrefix("/templates/");
+//        templateLoader.setSuffix(".mustache");
+
+        return templateLoader;
     }
 }
