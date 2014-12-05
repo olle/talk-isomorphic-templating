@@ -55,8 +55,6 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
     public JMustacheTemplateLoader templateLoader() {
 
         JMustacheTemplateLoader templateLoader = new JMustacheTemplateLoader();
-        // templateLoader.setPrefix("/templates/");
-        // templateLoader.setSuffix(".mustache");
 
         return templateLoader;
     }

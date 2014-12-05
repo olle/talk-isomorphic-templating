@@ -12,7 +12,8 @@ public class Index {
     @RequestMapping(value = "/")
     public ModelAndView displayIndexPage(Model model) {
 
-        Greetings.addGreeting(model);
+        model.addAttribute("greeting", "Hello from Mustache!");
+
         People.addPeople(model);
 
         return new ModelAndView("index", model.asMap());

@@ -190,9 +190,183 @@ $('#greeting').append('<p>Hello' + name + '</p>');
 
 
       <section>
-        <h1>Demo</h1>
+        <h2>Example</h2>
+        <p>Server- and client-side templating with Spring MVC and Mustache.</p>
       </section>
 
+
+      <section>
+        <h3>Dependencies</h3>
+        <pre><code data-trim class="xml">
+<dependency>
+  <groupId>com.github.sps.mustache</groupId>
+  <artifactId>mustache-spring-view</artifactId>
+  <version>1.3</version>
+</dependency>
+<dependency>
+  <groupId>com.samskivert</groupId>
+  <artifactId>jmustache</artifactId>
+  <version>1.9</version>
+</dependency>
+        </code></pre>
+      </section>
+
+      <section>
+        <h3>Project layout</h3>
+        <pre><code data-trim>
+src/main
+    ├── java
+    │   └── ...
+    └── webapp
+        ├── WEB-INF/
+        ├── assets
+        │   ├── jquery/
+        │   └── mustache/
+        ├── css/
+        ├── img/
+        └── templates
+            ├── index.mustache
+            └── person.mustache
+        </code></pre>
+      </section>
+
+
+      <section>
+        <h3>Config</h3>
+        <pre><code data-trim class="java">
+...
+@Configuration
+@EnableWebMvc
+@ComponentScan(basePackages = { "webapp" })
+public class WebAppConfig extends WebMvcConfigurerAdapter {
+
+  @Override
+  public void addResourceHandlers(ResourceHandlerRegistry reg) {
+
+    reg.addResourceHandler("/templates/**").addResourceLocations("/templates/");
+    reg.addResourceHandler("/assets/**").addResourceLocations("/assets/");
+    reg.addResourceHandler("/css/**").addResourceLocations("/css/");
+    reg.addResourceHandler("/img/**").addResourceLocations("/img/");
+  }
+  ...
+        </code></pre>
+      </section>
+
+
+      <section>
+        <h3>View resolver</h3>
+        <pre><code data-trim class="java">
+...
+@Bean
+public ViewResolver viewResolver() {
+
+  MustacheViewResolver viewResolver = new MustacheViewResolver();
+  viewResolver.setCache(false); // development only
+  viewResolver.setTemplateFactory(templateFactory());
+
+  return viewResolver;
+}
+...
+        </code></pre>
+        </section>
+
+
+        <section>
+          <h3>Template factory</h3>
+          <pre><code data-trim class="java">
+...
+@Bean
+public JMustacheTemplateFactory templateFactory() {
+
+  JMustacheTemplateFactory templateFactory = new JMustacheTemplateFactory();
+  templateFactory.setTemplateLoader(templateLoader());
+  templateFactory.setPrefix("/templates/");
+  templateFactory.setSuffix(".mustache");
+
+  return templateFactory;
+}
+...
+          </code></pre>
+        </section>
+
+
+      <section>
+        <h3>Controller</h3>
+        <pre><code data-trim class="java">
+...
+@Controller
+public class Index {
+
+  @RequestMapping(value = "/")
+  public ModelAndView displayIndexPage(Model model) {
+
+    model.addAttribute("greeting", "Hello from Mustache!");
+
+    People.addPeople(model);
+
+    return new ModelAndView("index", model.asMap());
+  }
+  ...
+        </code></pre>
+      </section>
+
+
+
+
+
+      <section>
+        <h3>People</h3>
+        <pre><code data-trim class="java">
+...
+public class People {
+
+  public static void addPeople(Model model) {
+
+    Person ruby = new Person("Ruby Heckler", 32);
+    Person bernhard = new Person("Bernhard Klein", 55);
+    Person trogdor = new Person("Trogdor", 3221);
+
+    model.addAttribute("people", Arrays.asList(ruby, bernhard, trogdor));
+  }
+...
+        </code></pre>
+      </section>
+
+
+      <section>
+        <h3>Index template</h3>
+        <pre><code data-trim>
+...
+&lt;body&gt;
+  &lt;header class="container"&gt;
+    &lt;h1&gt;{{greeting}}&lt;/h1&gt;
+  &lt;/header&gt;
+  &lt;section class="container"&gt;
+    &lt;h2&gt;People:&lt;/h2&gt;
+    &lt;ul id="people"&gt;
+    {{#people}}
+      {{&gt; person}} <!-- Partial yay! -->
+    {{/people}}
+    &lt;/ul&gt;
+...
+        </code></pre>
+      </section>
+
+
+      <section>
+        <h3>Person template</h3>
+        <pre><code data-trim>
+&lt;li&gt;
+  &lt;strong&gt;Name:&lt;/strong&gt; {{name}}
+  &lt;strong&gt;Age:&lt;/strong&gt; {{age}}
+&lt;/li&gt;
+        </code></pre>
+      </section>
+
+
+      <section>
+        <h1>Demo</h1>
+      </section>
 
     </div>
   </div>
