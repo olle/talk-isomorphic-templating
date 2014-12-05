@@ -1,9 +1,9 @@
-Mustache Templating
-===================
+Homogenous Templating
+=====================
 
-This talk is about [Mustache](http://mustache.github.io)
-templating and the potential of a homogenous solution for both server-
-and client-side.
+This talk is about templating and the potential of a homogenous
+solution for both server- and client-side using the
+[Mustache](http://mustache.github.io) templating library.
 
 ## Talk
 
@@ -18,14 +18,16 @@ everyting simply run:
 
 ## Demo: Spring MVC
 
-We provide a demo, a simple Spring MVC application, as an example of how
-server-side templating can harmonize with client-side progressive
-enhancement, and re-use of a single set of templates (or partials).
+We provide a demo, a simple Spring MVC application, as an example of
+how server-side and client-side templating can harmonize with each
+other.
 
 The demo application is built using [Maven](http://maven.apache.org),
 and uses an embedded [Jetty](http://eclipse.org/jetty/) web server. You
-should be able to compile and run it, using the command below, and then
-browse to the host and port number that was returned.
+should be able to compile and run it, with the command below, and then
+browse to the host and port number that was printed on the command
+line.
 
     mvn jetty:run
     
+Good luck!

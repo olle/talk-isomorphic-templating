@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Mustache Templating - FTW!</title>
+  <title>Homogenous Templating - FTW!</title>
   <meta name="description" content="An introduction to the Yeoman, Bower and Grunt toolset.">
   <meta name="author" content="Olle Törnström - toernstroem@synyx.de">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -25,6 +25,7 @@
   <div class="reveal">
     <div class="slides">
 
+
       <section>
         <h1>Welcome!</h1>
         <p>
@@ -34,8 +35,153 @@
         </p>
       </section>
 
+
       <section>
+        <h1>Homogenous Templating</h1>
+        <aside class="notes">
+          This talk is about the use of templating in web applications, and how
+          it can be set up to allow the use of the same tool both on the server-
+          and client-side.
+        </aside>
       </section>
+
+
+      <section>
+          <h3>template <small>|ˈtɛmpleɪt, -plɪt|</small></h3>
+          <p>a shaped piece of rigid material used as a pattern for processes such as cutting out, shaping, or drilling.</p>
+        <aside class="notes">
+          Templating can mean different things to different people.
+        </aside>
+      </section>
+
+
+      <section>
+        <img src="img/templating.jpg" />
+        <aside class="notes">
+          This is not what we mean.
+        </aside>
+      </section>
+
+
+      <section>
+        <h3>In ur strz, interpolejtin!</h3>
+        <pre><code data-trim>
+Hello ${name}!
+        </code></pre>
+        <aside class="notes">
+          When we say templating, we generally mean string interpolation or the
+          ability to separate the content from the presentation.
+        </aside>
+      </section>
+
+
+      <section>
+        <h3>Dynamic Server Pages</h3>
+        <img src="img/webserver.jpg" />
+        <aside class="notes">
+          Initially the web was state-less and pure. Pages were interpolated or
+          rendered only on the server side.
+        </aside>
+      </section>
+
+
+      <section>
+        <h2>The server pages wars!</h2>
+        <img src="img/serverpageswars.png" />
+        <aside class="notes">
+          Though there was a pretty common view on how to actually do templating
+          or interpolation between the available platforms.
+        </aside>
+      </section>
+
+
+      <section>
+        <h2>ASP</h2>
+        <pre><code data-trim class="asp">
+          <p>Hello <%= name %>!</p>
+        </code></pre>
+        <aside class="notes">
+          This is classic active server pages templating.
+        </aside>
+      </section>
+
+
+      <section>
+        <h2>JSP</h2>
+        <pre><code data-trim class="asp">
+<p>Hello <%= name %>!</p>
+        </code></pre>
+        <aside class="notes">
+          This JSP expression example uses the exact same syntax.
+        </aside>
+      </section>
+
+
+      <section>
+        <h2>PHP</h2>
+        <pre><code data-trim class="php">
+&lt;p&gt; Hello &lt;?= $name ?&gt;!&lt;/p&gt;
+        </code></pre>
+        <aside class="notes">
+          The PHP example is also very simliar.
+        </aside>
+      </section>
+
+
+      <section>
+        <h1>XML/XSLT</h1>
+        <img src="img/notlistening.png" />
+        <aside class="notes">
+          Of course there were other ways to generate dynamic content, and
+          perhaps even better, or at least more formal, than simple string
+          interpolation.
+        </aside>
+      </section>
+
+
+      <section>
+        <h2>Can haz moar puwr!</h2>
+        <img src="img/js-performance-over-time.png" />
+        <aside class="notes">
+          Now let's fast forward into present time. Thanks to Moore's law, the
+          client computer became faster. Web 2.0 and Ajax became a given
+          extension to the old state-less model.
+        </aside>
+      </section>
+
+
+      <section>
+        <h3>JS Templating v0.9</h3>
+        <pre><code data-trim class="javascript">
+$('#greeting').append('<p>Hello' + name + '</p>');
+        </code></pre>
+        <aside class="notes">
+          It was easy to go for a quick-and-dirty solution.
+        </aside>
+      </section>
+
+
+      <section>
+        <h1>Bad idea</h1>
+        <img src="img/badidea.jpg" />
+        <aside class="notes">
+          But as projects grew on the client-side, so did the motivation for
+          client-side templating.
+        </aside>
+      </section>
+
+
+      <section>
+        <h3>JS Templating v1.0</h3>
+        <img src="img/client-side-templating.png" />
+        <aside class="notes">
+          Resuling in a lot of neat templating solutions for JavaScript.
+        </aside>
+      </section>
+
+
+
+
 
     </div>
   </div>
@@ -55,8 +201,8 @@
       transition: Reveal.getQueryHash().transition || 'concave', // default/cube/page/concave/zoom/linear/fade/none
 
       // Parallax scrolling
-      // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
-      // parallaxBackgroundSize: '2100px 900px',
+      parallaxBackgroundImage: 'img/reveal-parallax-1.jpg',
+      parallaxBackgroundSize: '2100px 900px',
 
       // Optional libraries used to extend on reveal.js
       dependencies: [{

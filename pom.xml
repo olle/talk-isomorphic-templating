@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.synyx.talks</groupId>
-	<artifactId>talk-mustache-templating</artifactId>
+	<artifactId>talk-homogenous-templating</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>Homogenous Mustache Templating</name>
+	<name>Homogenous Templating</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
