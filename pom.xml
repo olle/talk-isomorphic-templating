@@ -3,12 +3,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.studiomediatech.talks</groupId>
-	<artifactId>mustache-templating</artifactId>
+	<groupId>org.synyx.talks</groupId>
+	<artifactId>talk-mustache-templating</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>Mustache Templating</name>
+	<name>Homogenous Mustache Templating</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

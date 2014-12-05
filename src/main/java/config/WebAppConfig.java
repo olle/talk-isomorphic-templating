@@ -1,4 +1,4 @@
-package com.studiomediatech.talks;
+package config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -15,7 +15,7 @@ import org.springframework.web.servlet.view.mustache.jmustache.JMustacheTemplate
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "com.studiomediatech.talks.controller" })
+@ComponentScan(basePackages = { "webapp" })
 public class WebAppConfig extends WebMvcConfigurerAdapter {
 
     @Override
@@ -55,8 +55,8 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
     public JMustacheTemplateLoader templateLoader() {
 
         JMustacheTemplateLoader templateLoader = new JMustacheTemplateLoader();
-//        templateLoader.setPrefix("/templates/");
-//        templateLoader.setSuffix(".mustache");
+        // templateLoader.setPrefix("/templates/");
+        // templateLoader.setSuffix(".mustache");
 
         return templateLoader;
     }

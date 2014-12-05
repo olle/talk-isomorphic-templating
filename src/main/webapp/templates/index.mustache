@@ -10,33 +10,27 @@
 </head>
 
 <body>
-  <header>
-    <div class="container">
-      <h1>{{greeting}}</h1>
-    </div>
+
+  <header class="container">
+    <h1>{{greeting}}</h1>
   </header>
 
   <section class="container">
-    <article>
-      <h2>People:</h2>
-      <ul id="people">
-        {{#items}}
-          <li>{{> person}}</li>
-        {{/items}}
-        {{^items}}
-          <li>No people here!</li>
-        {{/items}}
-      </ul>
-    </article>
 
-    <article>
-      <h3>Add new person:</h3>
-      <form id="add-person">
-        <input type="text" name="name" placeholder="Name" />
-        <input type="text" name="age" placeholder="Age" size="5" />
-        <button type="submit">Save person</button>
-      </form>
-    </article>
+    <h2>People:</h2>
+    <ul id="people">
+    {{#people}}
+      {{> person}}
+    {{/people}}
+    </ul>
+
+    <h3>Add new person:</h3>
+    <form id="add-person">
+      <input type="text" name="name" placeholder="Name" />
+      <input type="text" name="age" placeholder="Age" size="5" />
+      <button type="submit">Save person</button>
+    </form>
+
   </section>
 
   <script type="text/javascript" src="assets/mustache/mustache.js"></script>
@@ -50,24 +44,24 @@
         async: false
       }).responseText;
 
-      $('#add-person').on('submit', function(ev) {
-        ev.preventDefault();
-        var person = {
-          name: ev.target['name'].value,
-          age: ev.target['age'].value,
+      $('#add-person').on('submit', function(event) {
+
+        event.preventDefault();
+
+        var form = event.target;
+
+        var model = {
+          name: form['name'].value,
+          age: form['age'].value,
         };
 
-        var el = [
-          '<li>',
-          Mustache.render(template, person),
-          '</li>'
-        ].join('');
+        var element = Mustache.render(template, model);
 
-        $('#people').append(el);
+        $('#people').append(element);
 
-        ev.target['name'].value = '';
-        ev.target['age'].value = '';
+        form.reset();
       });
+
     })(jQuery, Mustache);
   </script>
 
