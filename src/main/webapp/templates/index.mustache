@@ -47,7 +47,6 @@
       $('#add-person').on('submit', function(event) {
 
         event.preventDefault();
-
         var form = event.target;
 
         var model = {
@@ -55,9 +54,8 @@
           age: form['age'].value,
         };
 
-        var element = Mustache.render(template, model);
-
-        $('#people').append(element);
+        var person = Mustache.render(template, model);
+        $('#people').append(person);
 
         form.reset();
       });
