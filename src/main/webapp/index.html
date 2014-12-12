@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="{{no-server}}" lang="en">
 
 <head>
   <meta charset="utf-8">
-  <title>Mustache Templating</title>
+  <title>Mustache Templating - FTW!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href='http://fonts.googleapis.com/css?family=Oregano' rel='stylesheet' type='text/css'>
   <link href="css/style.css" rel="stylesheet" type="text/css" />
@@ -20,7 +20,7 @@
     <h2>People:</h2>
     <ul id="people">
     {{#people}}
-      {{> person}}
+      {{> _person}}
     {{/people}}
     </ul>
 
@@ -31,37 +31,12 @@
       <button type="submit">Save person</button>
     </form>
 
+    <small>View source form handler: <a href="js/add-person.js">add-person.js</a></small>
+
   </section>
 
-  <script type="text/javascript" src="assets/mustache/mustache.js"></script>
   <script type="text/javascript" src="assets/jquery/dist/jquery.js"></script>
-  <script type="text/javascript">
-    (function($, Mustache) {
-
-      var template = $.ajax({
-        type: "GET",
-        url: 'templates/person.mustache',
-        async: false
-      }).responseText;
-
-      $('#add-person').on('submit', function(event) {
-
-        event.preventDefault();
-        var form = event.target;
-
-        var model = {
-          name: form['name'].value,
-          age: form['age'].value,
-        };
-
-        var person = Mustache.render(template, model);
-        $('#people').append(person);
-
-        form.reset();
-      });
-
-    })(jQuery, Mustache);
-  </script>
+  <script data-main="js/app.js" src="assets/requirejs/require.js"></script>
 
 </body>
 

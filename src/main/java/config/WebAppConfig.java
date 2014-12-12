@@ -21,10 +21,11 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
-        registry.addResourceHandler("/templates/**").addResourceLocations("/templates/");
+        registry.addResourceHandler("/**/*.html").addResourceLocations("/");
         registry.addResourceHandler("/assets/**").addResourceLocations("/assets/");
         registry.addResourceHandler("/css/**").addResourceLocations("/css/");
         registry.addResourceHandler("/img/**").addResourceLocations("/img/");
+        registry.addResourceHandler("/js/**").addResourceLocations("/js/");        
     }
 
 
@@ -44,8 +45,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
         JMustacheTemplateFactory templateFactory = new JMustacheTemplateFactory();
         templateFactory.setTemplateLoader(templateLoader());
-        templateFactory.setPrefix("/templates/");
-        templateFactory.setSuffix(".mustache");
+        templateFactory.setSuffix(".html");
 
         return templateFactory;
     }

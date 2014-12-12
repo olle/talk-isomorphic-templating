@@ -12,30 +12,49 @@ module.exports = function(grunt) {
     },
 
     connect: {
-      example: {
+      talk: {
         options: {
           port: 8088,
           open: 'http://localhost:8088/talk/',
-          livereload: true
+          livereload: true,
         },
       },
+      demo: {
+        options: {
+          port: 8089,
+          open: 'http://localhost:8089/src/main/webapp/index.html',
+          livereload: 35721,
+        }
+      }
     },
 
     watch: {
-      presentation: {
+      talk: {
         files: ['talk/*.html'],
         options: {
-          livereload: true
+          livereload: true,
         },
       },
+      demo: {
+        files: ['src/main/webapp/**/*'],
+        options: {
+          livereload: 35721
+        }
+      }
     },
 
   });
 
   grunt.registerTask('default', [
     'bower-install-simple',
-    'connect',
-    'watch'
+    'connect:talk',
+    'watch:talk'
+  ]);
+
+  grunt.registerTask('demo', [
+    'bower-install-simple',
+    'connect:demo',
+    'watch:demo'
   ]);
 
 };

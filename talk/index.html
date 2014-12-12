@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Homogenous Templating - FTW!</title>
+  <title>Isomorphic Templating - FTW!</title>
   <meta name="description" content="An introduction to the Yeoman, Bower and Grunt toolset.">
   <meta name="author" content="Olle Törnström - toernstroem@synyx.de">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -37,18 +37,18 @@
 
 
       <section>
-        <h1>Homogenous Templating</h1>
+        <h1>Isomorphic Templating</h1>
         <aside class="notes">
-          This talk is about the use of templating in web applications, and how
-          it can be set up to allow the use of the same tool both on the server-
-          and client-side.
+          This talk is about templating in web applications, and how it can be
+          done both on the server- and client-side. While we're waiting for
+          web components to come.
         </aside>
       </section>
 
 
       <section>
-          <h3>template <small>|ˈtɛmpleɪt, -plɪt|</small></h3>
-          <p>a shaped piece of rigid material used as a pattern for processes such as cutting out, shaping, or drilling.</p>
+        <h3>template <small>|ˈtɛmpleɪt, -plɪt|</small></h3>
+        <p>a shaped piece of rigid material used as a pattern for processes such as cutting out, shaping, or drilling.</p>
         <aside class="notes">
           Templating can mean different things to different people.
         </aside>
@@ -66,11 +66,16 @@
       <section>
         <h3>In ur strz, interpolejtin!</h3>
         <pre><code data-trim>
+name = 'Zoidberg'
+
 Hello ${name}!
+
+=> 'Hello Zoidberg!'
         </code></pre>
         <aside class="notes">
-          When we say templating, we generally mean string interpolation or the
-          ability to separate the content from the presentation.
+          For this talk, this is our simplified definition of templating: string
+          interpolation or the ability to separate the content from the
+          presentation.
         </aside>
       </section>
 
@@ -79,8 +84,10 @@ Hello ${name}!
         <h3>Dynamic Server Pages</h3>
         <img src="img/webserver.jpg" />
         <aside class="notes">
-          Initially the web was state-less and pure. Pages were interpolated or
-          rendered only on the server side.
+          Templating on the web has had quite an important role. Initially the
+          web was more or less: static documents with links. My first encounter
+          with dynamic content was generated static pages, rendered or
+          interpolated every night, by the server.
         </aside>
       </section>
 
@@ -89,52 +96,26 @@ Hello ${name}!
         <h2>Templating v1.0</h2>
         <img src="img/serverpageswars.png" />
         <aside class="notes">
-          Though there was a pretty common view on how to actually do templating
-          or interpolation between the available platforms.
+          So it was clear that the web was going to be dynamic, and so begun the
+          "war of the server pages". Emphasis on `server`. Pages were generated
+          on the server.
         </aside>
       </section>
 
 
       <section>
-        <h2>ASP</h2>
-        <pre><code data-trim class="asp">
-          <p>Hello <%= name %>!</p>
-        </code></pre>
-        <aside class="notes">
-          This is classic active server pages templating.
-        </aside>
-      </section>
-
-
-      <section>
-        <h2>JSP</h2>
-        <pre><code data-trim class="asp">
+        <h2>ASP, JSP, PHP</h2>
+        <pre><code data-trim>
 <p>Hello <%= name %>!</p>
-        </code></pre>
-        <aside class="notes">
-          This JSP expression example uses the exact same syntax.
-        </aside>
-      </section>
 
+<p>Hello <%= name %>!</p>
 
-      <section>
-        <h2>PHP</h2>
-        <pre><code data-trim class="php">
 &lt;p&gt; Hello &lt;?= $name ?&gt;!&lt;/p&gt;
+
         </code></pre>
         <aside class="notes">
-          The PHP example is also very simliar.
-        </aside>
-      </section>
-
-
-      <section>
-        <h1>XML/XSLT</h1>
-        <img src="img/notlistening.png" />
-        <aside class="notes">
-          Of course there were other ways to generate dynamic content, and
-          perhaps even better, or at least more formal, than simple string
-          interpolation.
+          Here's some classic server pages templating. There was a pretty common
+          view on how to actually do simple templating.
         </aside>
       </section>
 
@@ -143,9 +124,9 @@ Hello ${name}!
         <h2>Can haz moar puwr!</h2>
         <img src="img/js-performance-over-time.png" />
         <aside class="notes">
-          Now let's fast forward into present time. Thanks to Moore's law, the
-          client computer became faster. Web 2.0 and Ajax became a given
-          extension to the old state-less model.
+          Now let's fast forward into present time. Thanks to Moore's law
+          everything got faster and better. Web 2.0 and Ajax came to solve the
+          slow request-render-response cycles.
         </aside>
       </section>
 
@@ -156,7 +137,8 @@ Hello ${name}!
 $('#greeting').append('<p>Hello' + name + '</p>');
         </code></pre>
         <aside class="notes">
-          It was easy to go for a quick-and-dirty solution.
+          At first, almost everybody did stuff like this. It was quick, and...
+          well dirty.
         </aside>
       </section>
 
@@ -165,8 +147,8 @@ $('#greeting').append('<p>Hello' + name + '</p>');
         <h1>Bad idea</h1>
         <img src="img/badidea.jpg" />
         <aside class="notes">
-          But as projects grew on the client-side, so did the motivation for
-          client-side templating.
+          But as projects grew in features on the client-side, so did the
+          motivation for a better solution.
         </aside>
       </section>
 
@@ -175,7 +157,8 @@ $('#greeting').append('<p>Hello' + name + '</p>');
         <h3>Templating v2.0</h3>
         <img src="img/js-templating-v1.png" />
         <aside class="notes">
-          Resulting in a lot of neat templating solutions for the client-side.
+          Which resulted in a lot of neat templating solutions for the
+          client-side.
         </aside>
       </section>
 
@@ -192,6 +175,10 @@ $('#greeting').append('<p>Hello' + name + '</p>');
       <section>
         <h2>Example</h2>
         <p>Server- and client-side templating with Spring MVC and Mustache.</p>
+        <aside class="notes">
+          To demonstrate how we can do this I've prepared a little demo
+          application based on Spring MVC and Mustache.
+        </aside>
       </section>
 
 
@@ -209,6 +196,10 @@ $('#greeting').append('<p>Hello' + name + '</p>');
   <version>1.9</version>
 </dependency>
         </code></pre>
+        <aside class="notes">
+          The `mustache-spring-view` library together with the `JMustache`
+          implementation, is our view-layer.
+        </aside>
       </section>
 
       <section>
@@ -221,13 +212,19 @@ src/main
         ├── WEB-INF/
         ├── assets
         │   ├── jquery/
-        │   └── mustache/
+        │   ├── mustache/
+        │   └── etc...
         ├── css/
         ├── img/
-        └── templates
-            ├── index.mustache
-            └── person.mustache
+        ├── js/
+        ├── index.html
+        └── _person.html
         </code></pre>
+        <aside class="notes">
+          As you see, it's a very simple application with some dependecy-
+          assets, CSS, images and JavaScript - and of course our Mustache
+          HTML-templates.
+        </aside>
       </section>
 
 
@@ -243,13 +240,18 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
   @Override
   public void addResourceHandlers(ResourceHandlerRegistry reg) {
 
-    reg.addResourceHandler("/templates/**").addResourceLocations("/templates/");
+    reg.addResourceHandler("/**/*.html").addResourceLocations("/");
     reg.addResourceHandler("/assets/**").addResourceLocations("/assets/");
     reg.addResourceHandler("/css/**").addResourceLocations("/css/");
     reg.addResourceHandler("/img/**").addResourceLocations("/img/");
+    reg.addResourceHandler("/js/**").addResourceLocations("/js/");
   }
   ...
         </code></pre>
+        <aside class="notes">
+          We're configuring everything through an app initializer and this
+          annotated configuration class - enabling our resources.
+        </aside>
       </section>
 
 
@@ -268,7 +270,10 @@ public ViewResolver viewResolver() {
 }
 ...
         </code></pre>
-        </section>
+        <aside class="notes">
+          The Mustache view resolver is using a template factory bean...
+        </aside>
+      </section>
 
 
         <section>
@@ -280,13 +285,16 @@ public JMustacheTemplateFactory templateFactory() {
 
   JMustacheTemplateFactory templateFactory = new JMustacheTemplateFactory();
   templateFactory.setTemplateLoader(templateLoader());
-  templateFactory.setPrefix("/templates/");
-  templateFactory.setSuffix(".mustache");
+  templateFactory.setSuffix(".html");
 
   return templateFactory;
 }
 ...
           </code></pre>
+          <aside class="notes">
+            ...which we configure to use the HTML suffix. The template loader is
+            also from the JMustache library, but we can use it out-of-the box.
+          </aside>
         </section>
 
 
@@ -298,20 +306,22 @@ public JMustacheTemplateFactory templateFactory() {
 public class Index {
 
   @RequestMapping(value = "/")
-  public ModelAndView displayIndexPage(Model model) {
+  public String displayIndexPage(Model model) {
 
     model.addAttribute("greeting", "Hello from Mustache!");
 
     People.addPeople(model);
 
-    return new ModelAndView("index", model.asMap());
+    return "index";
   }
   ...
         </code></pre>
+        <aside class="notes">
+          A simple controller adds a greeting property and tells a
+          simple people-service to add some people, and returns the
+          "index"-view.
+        </aside>
       </section>
-
-
-
 
 
       <section>
@@ -330,6 +340,9 @@ public class People {
   }
 ...
         </code></pre>
+        <aside class="notes">
+          The fake service adds a list of people to the model.
+        </aside>
       </section>
 
 
@@ -345,11 +358,16 @@ public class People {
     &lt;h2&gt;People:&lt;/h2&gt;
     &lt;ul id="people"&gt;
     {{#people}}
-      {{&gt; person}} <!-- Partial yay! -->
+      {{&gt; _person}} <!-- Partial yay! -->
     {{/people}}
     &lt;/ul&gt;
 ...
         </code></pre>
+        <aside class="notes">
+          This is our index Mustache-template, we have a header with the
+          greeting and a block for the people. Each person is rendered by a
+          partial.
+        </aside>
       </section>
 
 
@@ -361,22 +379,44 @@ public class People {
   &lt;strong&gt;Age:&lt;/strong&gt; {{age}}
 &lt;/li&gt;
         </code></pre>
+        <aside class="notes">
+          The person partial encapsulates a list-item and renders the person
+          and age.
+        </aside>
       </section>
 
 
       <section>
         <h1>Demo</h1>
+        <aside class="notes">
+          So let's see it run! Simply start it `mvn jetty:run`.
+        </aside>
       </section>
 
 
       <section>
         <img src="img/why.jpg" />
+        <aside class="notes">
+          Ok, that was fun. But why would we ever want to do this in a project?
+          I can think of a few reasons.
+        </aside>
       </section>
 
 
       <section>
-        <h2></h2>
-        TODO: Add the why here...
+        <img src="img/recycle.png" />
+        <aside class="notes">
+          Re-use: are excellent for server/client-side template reuse. Allows
+          re-use without constraints between projects too.
+        </aside>
+      </section>
+
+
+      <section>
+        <img src="img/dev-design-design-dev.jpg" />
+        <aside class="notes">
+
+        </aside>
       </section>
 
     </div>

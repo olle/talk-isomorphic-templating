@@ -60,6 +60,7 @@ button {
 ul {
   margin: 0;
   margin-bottom: .3em;
+  list-style: none;
 }
 
 .mini {
