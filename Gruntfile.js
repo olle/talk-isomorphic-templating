@@ -45,7 +45,7 @@ module.exports = function(grunt) {
 
   });
 
-  grunt.registerTask('default', [
+  grunt.registerTask('serve', [
     'bower-install-simple',
     'connect:talk',
     'watch:talk'
@@ -56,5 +56,7 @@ module.exports = function(grunt) {
     'connect:demo',
     'watch:demo'
   ]);
+
+  grunt.registerTask('default', ['serve']);
 
 };

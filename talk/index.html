@@ -56,6 +56,7 @@
 
 
       <section>
+        <h6>This is not what we mean</h6>
         <img src="img/templating.jpg" />
         <aside class="notes">
           This is not what we mean.
@@ -134,7 +135,9 @@ Hello ${name}!
       <section>
         <h3>Templating v1.9</h3>
         <pre><code data-trim class="javascript">
-$('#greeting').append('<p>Hello' + name + '</p>');
+$.get('/users/42/', function (data) {
+  $('#greeting').html('<p>Hello' + data.name + '</p>');
+});
         </code></pre>
         <aside class="notes">
           At first, almost everybody did stuff like this. It was quick, and...
@@ -308,7 +311,7 @@ public class Index {
   @RequestMapping(value = "/")
   public String displayIndexPage(Model model) {
 
-    model.addAttribute("greeting", "Hello from Mustache!");
+    model.addAttribute("greeting", "Hello from JMustache!");
 
     People.addPeople(model);
 
@@ -395,6 +398,59 @@ public class People {
 
 
       <section>
+        <h6>A marker...</h6>
+        <pre><code data-trim>
+&lt;!DOCTYPE html&gt;
+&lt;html class="{{no-server}}" lang="en"&gt;
+  ...
+        </code></pre>
+        <aside class="notes">
+          We'll tag the HTML element with a simple property...
+        </aside>
+      </section>
+
+
+      <section>
+        <h6>That is removed...</h6>
+        <pre><code data-trim class="java">
+...
+@Controller
+public class Index {
+
+  @RequestMapping(value = "/")
+  public String displayIndexPage(Model model) {
+
+    model.addAttribute("no-server", "");
+    ...
+        </code></pre>
+        <aside class="notes">
+          Letting the server set it as an empty property - in other words,
+          removing the marker.
+        </aside>
+      </section>
+
+
+      <section>
+        <h3>Offline dev-mode!</h3>
+        <pre><code data-trim class="javascript">
+if ($('html').hasClass('{{no-server}}')) {
+  ...
+        </code></pre>
+        <aside class="notes">
+          Giving us a simple way to know when we're working without the server.
+        </aside>
+      </section>
+
+
+      <section>
+        <h2>Demo revisit</h2>
+        <aside class="notes">
+          No let's see that again... this time offline. Run `grunt demo`.
+        </aside>
+      </section>
+
+
+      <section>
         <img src="img/why.jpg" />
         <aside class="notes">
           Ok, that was fun. But why would we ever want to do this in a project?
@@ -404,7 +460,7 @@ public class People {
 
 
       <section>
-        <img src="img/recycle.png" />
+        <img src="img/recycle.jpg" />
         <aside class="notes">
           Re-use: are excellent for server/client-side template reuse. Allows
           re-use without constraints between projects too.
@@ -415,9 +471,46 @@ public class People {
       <section>
         <img src="img/dev-design-design-dev.jpg" />
         <aside class="notes">
-
+          Separation of processes and tools. UX/UI-people can work without
+          a server - it's really fast.
         </aside>
       </section>
+
+
+      <section>
+        <img src="img/content-is-king.jpg" />
+        <aside class="notes">
+          Or the other way around, pure content-generation from the server,
+          partials can be reused as we saw in the demo. Possible to drive the
+          process `bottom-up` also.
+        </aside>
+      </section>
+
+
+      <section>
+        <img src="img/progressive-enhancement.jpg" />
+        <aside class="notes">
+          Better support for responsive web design, in center of progressive
+          enhancement (or graceful degradation).
+        </aside>
+      </section>
+
+
+      <section>
+        <h1>Questions?</h1>
+        <aside class="notes">
+          Are there any questions?
+        </aside>
+      </section>
+
+
+      <section>
+        <img src="img/harmony.jpg" />
+        <aside class="notes">
+          Thanks!
+        </aside>
+      </section>
+
 
     </div>
   </div>
@@ -428,7 +521,7 @@ public class People {
     // Full list of configuration options available here:
     // https://github.com/hakimel/reveal.js#configuration
     Reveal.initialize({
-      controls: true,
+      controls: false,
       progress: true,
       history: true,
       center: true,
