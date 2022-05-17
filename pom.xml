@@ -14,7 +14,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 		<jetty.version>9.2.5.v20141112</jetty.version>
-		<spring.version>4.0.3.RELEASE</spring.version>
+		<spring.version>5.2.21.RELEASE</spring.version>
 		<org.slf4j-version>1.7.5</org.slf4j-version>
 	</properties>
 
